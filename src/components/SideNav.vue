@@ -3,7 +3,7 @@
     <nav class="sidenav nav flex-column">
       <router-link to="/">
         <img
-          src="https://cdn-icons-png.flaticon.com/512/5352/5352132.png"
+          src="https://icons.iconarchive.com/icons/webalys/kameleon.pics/512/Apartment-icon.png"
           style="height: 6rem; width: 9.25rem"
         />
       </router-link>
