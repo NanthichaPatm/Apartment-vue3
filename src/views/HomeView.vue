@@ -1,18 +1,22 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <navbar />
+    Hello
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import navbar from "../components/SideNav.vue";
 export default {
   name: "HomeView",
-  components: {
-    HelloWorld,
-  },
+  components: { navbar },
 };
 </script>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@200;400&display=swap");
+.home {
+  margin-left: 250px; /* Same width as the sidebar + left position in px */
+  margin-top: 20px;
+  padding: 0px 10px;
+}
+</style>
