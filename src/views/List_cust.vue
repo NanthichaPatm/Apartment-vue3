@@ -73,7 +73,10 @@
                 </button>
               </td>
               <td class="middleTable">
-                <button class="btn btn-light">
+                <button
+                  class="btn btn-light"
+                  v-if="customer.status == 'active'"
+                >
                   <BootstrapIcon
                     icon="house-dash-fill"
                     size="md"
@@ -81,6 +84,10 @@
                     @click="confirmDelete(customer.id)"
                   />
                 </button>
+                <p
+                  v-else-if="customer.status == 'inactive'"
+                  class="status btn"
+                ></p>
               </td>
             </tr>
           </tbody>
