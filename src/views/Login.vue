@@ -3,7 +3,7 @@
     <div class="container">
       <h1>ล็อคอินเข้าสู่ระบบ</h1>
       <hr />
-      <form>
+      <div>
         <div class="form-control">
           <label for="username">Username </label>
           <input
@@ -35,13 +35,13 @@
           เข้าสู่ระบบ
         </button>
         <p class="text">Don't have an account? <a href="">Register</a></p>
-      </form>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-// import AuthService from "@/services/AuthService";
+import AuthService from "@/services/AuthService";
 
 export default {
   name: "LoginComponent",
@@ -56,10 +56,9 @@ export default {
   },
 
   methods: {
-    login() {
+    async login() {
       console.log(this.infoLogin);
-      // await AuthService.loginAuth(this.infoLogin);
-      console.log("hell");
+      await AuthService.loginAuth(this.infoLogin);
     },
     showPassword() {
       let x = document.getElementById("myInput");
