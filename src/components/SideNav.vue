@@ -8,7 +8,7 @@
         />
       </router-link>
       <a
-        id="manage"
+        id="manageRoom"
         class="nav-link"
         data-bs-toggle="collapse"
         data-bs-target="#listRoom"
@@ -18,11 +18,13 @@
         <BootstrapIcon icon="houses" size="md" />
         <strong> จัดการห้อง</strong>
       </a>
-      <div id="listRoom" class="collapse">
-        <router-link to="/manage/listRoom">
+
+      <router-link to="/manage/listRoom">
+        <div id="listRoom" class="collapse">
           <a class="nav-link float-end">รายการห้อง</a>
-        </router-link>
-      </div>
+        </div>
+      </router-link>
+
       <a
         id="manageCustomers"
         class="nav-link"
@@ -39,6 +41,22 @@
           <a class="nav-link float-end">รายการลูกค้า</a>
         </div>
       </router-link>
+      <a
+        id="manageBills"
+        class="nav-link"
+        data-bs-toggle="collapse"
+        data-bs-target="#listBill"
+        href="#"
+        @click="onClick3"
+      >
+        <BootstrapIcon icon="receipt-cutoff" size="md" />
+        <strong> จัดการบิล</strong>
+      </a>
+      <router-link to="/manage/listBill">
+        <div id="listBill" class="collapse">
+          <a class="nav-link float-end">รายการบิล</a>
+        </div>
+      </router-link>
     </nav>
     <router-view />
   </div>
@@ -52,6 +70,7 @@ export default {
     return {
       isVisible1: false,
       isVisible2: false,
+      isVisible3: false,
     };
   },
 
@@ -64,6 +83,9 @@ export default {
     onClick2() {
       this.isVisible2 = !this.isVisible2;
     },
+    onClick3() {
+      this.isVisible3 = !this.isVisible3;
+    },
   },
 };
 </script>
@@ -73,6 +95,7 @@ nav {
   text-align: start;
   background: rgb(215, 215, 215);
   font-family: "Kanit", sans-serif;
+  bottom: 20px;
 }
 .sidenav {
   width: 200px;

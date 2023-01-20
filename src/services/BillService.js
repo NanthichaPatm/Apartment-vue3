@@ -2,67 +2,75 @@ import axios from "axios";
 import AuthService from "@/services/AuthService";
 
 const api_endpoint = process.env.VUE_APP_API_URL || "http://localhost:8000";
-
 export default {
-  async getAllCustomer(filter) {
+  async getAllBill(filter) {
     let headers = AuthService.getHeader();
-    let url = `${api_endpoint}/customers/all`;
+    let url = `${api_endpoint}/bills/all`;
     let body = {
-      search: filter.search,
+      room_number: filter.search,
       status: filter.status,
+      type: filter.type,
+      month: filter.month,
+      year: filter.year,
     };
     console.log(body);
     let res = await axios.post(url, body, headers);
     console.log(res);
     return res.data;
   },
-  async createCustomer(name, id_number, phone) {
+  async createBill(bill) {
     let headers = AuthService.getHeader();
-    let url = `${api_endpoint}/customers/create`;
+    let url = `${api_endpoint}/bills/create`;
     let body = {
-      name: name,
-      id_number: id_number,
-      phone: phone,
+      room_id: bill.roomId,
+      amount: bill.amount,
+      month: bill.month,
+      year: bill.year,
+      type: bill.type,
     };
+    console.log(body);
     let res = await axios.post(url, body, headers);
     console.log(res);
     return res.data;
   },
-  async deleteCustomer(id) {
+  async deleteBill(id) {
     let headers = AuthService.getHeader();
-    let url = `${api_endpoint}/customers/delete/${id}`;
+    let url = `${api_endpoint}/bills/delete/${id}`;
 
     let res = await axios.delete(url, headers);
     console.log(res);
     return res.data;
   },
-  async getCustomer(id) {
+  async getBill(id) {
     let headers = AuthService.getHeader();
-    let url = `${api_endpoint}/customers/${id}`;
+    let url = `${api_endpoint}/bills/${id}`;
     let res = await axios.get(url, headers);
+    console.log(res);
     return res.data;
   },
-  async editCustomer(customer) {
+  async editBill(bill) {
     let headers = AuthService.getHeader();
-    let url = ` ${api_endpoint}/customers/update/${customer.id}`;
+    let url = ` ${api_endpoint}/bills/update/${bill.id}`;
     let body = {
-      name: customer.name,
-      id_number: customer.id_number,
-      phone: customer.phone,
+      room_id: bill.room_id,
+      amount: bill.amount,
+      month: bill.month,
+      year: bill.year,
+      type: bill.type,
     };
     let res = await axios.put(url, body, headers);
     console.log(res);
     return res.data;
   },
-  async assignCustomerToRoom(room_id, customer_id) {
+  async updateStatus(bill) {
     let headers = AuthService.getHeader();
-    let url = ` ${api_endpoint}/customers/assign`;
+    let url = ` ${api_endpoint}/bills/updateStatus/${bill.id}`;
     let body = {
-      room_id: room_id,
-      customer_id: customer_id,
+      id: bill.id,
+      status: bill.status,
     };
-    console.log(body);
     let res = await axios.post(url, body, headers);
+    console.log(res);
     return res.data;
   },
 };

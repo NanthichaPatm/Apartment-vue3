@@ -39,7 +39,6 @@
           <select
             class="form-select"
             aria-label="Default select example"
-            style="width: 150px"
             v-model="customer.id"
           >
             <option selected value="null" v-if="customer.id != null">
@@ -139,12 +138,12 @@ header {
 }
 .form-control {
   display: inline;
-  width: 65%;
+  width: 50%;
   font-size: 1.25rem;
 }
 .form-select {
   display: inline;
-  width: 65%;
+  width: 50%;
   font-size: 1.25rem;
   margin-left: 0;
 }

@@ -108,7 +108,7 @@ header {
 }
 .form-control {
   display: inline;
-  width: 65%;
+  width: 50%;
   font-size: 1.25rem;
 }
 .saveEdit {

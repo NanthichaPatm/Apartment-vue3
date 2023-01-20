@@ -7,6 +7,30 @@
     <hr />
     <section>
       <div>
+        <div class="d-flex mb-3" role="search">
+          <input
+            class="form-control"
+            style="width: 200px"
+            type="text"
+            placeholder="ชื่อลูกค้า หรือ เลขห้อง..."
+            aria-label="Search"
+            v-model="filter.search"
+          />
+
+          <select
+            class="form-select ms-2 me-2"
+            aria-label="Default select example"
+            style="width: 150px"
+            v-model="filter.status"
+          >
+            <option selected value="null">สถานะทั้งหมด</option>
+            <option value="free">ห้องว่าง</option>
+            <option value="not_free">ห้องไม่ว่าง</option>
+          </select>
+          <button class="btn btn-secondary" @click="searchCustomer()">
+            ค้นหา
+          </button>
+        </div>
         <table class="roomTable table table-hover table-class">
           <thead>
             <tr>
@@ -91,17 +115,21 @@ export default {
   data() {
     return {
       rooms: [],
+      filter: {
+        search: null,
+        status: null,
+      },
     };
   },
 
   async mounted() {
-    this.rooms = await RoomService.getAllRooms();
-    console.log(this.rooms);
+    this.rooms = await RoomService.getAllRooms(this.filter);
+    // console.log(this.rooms);
   },
 
   methods: {
     async updateRoom() {
-      this.rooms = await RoomService.getAllRooms();
+      this.rooms = await RoomService.getAllRooms(this.filter);
     },
     async deleteRoom(id) {
       console.log(id);
@@ -148,6 +176,14 @@ export default {
             );
           }
         });
+    },
+    async searchCustomer() {
+      console.log(this.filter.search);
+      if (this.filter.status == "null") {
+        this.filter.status = null;
+      }
+      this.rooms = await RoomService.getAllRooms(this.filter);
+      console.log(this.rooms);
     },
   },
 };

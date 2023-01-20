@@ -75,7 +75,7 @@
               <td class="middleTable">
                 <button
                   class="btn btn-light"
-                  v-if="customer.status == 'active'"
+                  v-if="customer.status == 'inactive'"
                 >
                   <BootstrapIcon
                     icon="house-dash-fill"
@@ -85,7 +85,7 @@
                   />
                 </button>
                 <p
-                  v-else-if="customer.status == 'inactive'"
+                  v-else-if="customer.status == 'active'"
                   class="status btn"
                 ></p>
               </td>

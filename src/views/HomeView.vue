@@ -19,4 +19,7 @@ export default {
   margin-top: 20px;
   padding: 0px 10px;
 }
+* {
+  font-family: "Kanit", sans-serif;
+}
 </style>
