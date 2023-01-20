@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="sidenav nav flex-column">
+    <nav class="sidenav nav">
       <router-link to="/">
         <img
           src="https://icons.iconarchive.com/icons/webalys/kameleon.pics/512/Apartment-icon.png"
@@ -57,12 +57,18 @@
           <a class="nav-link float-end">รายการบิล</a>
         </div>
       </router-link>
+      <!-- Logout nav -->
+      <a id="log-out" class="nav-link" href="#" @click="logout()">
+        <BootstrapIcon icon="box-arrow-left" size="md" />
+        <strong> Logout</strong>
+      </a>
     </nav>
     <router-view />
   </div>
 </template>
 
 <script>
+import AuthService from "@/services/AuthService";
 export default {
   name: "sideNav",
 
@@ -86,6 +92,10 @@ export default {
     onClick3() {
       this.isVisible3 = !this.isVisible3;
     },
+    logout() {
+      AuthService.logout();
+      this.$router.push({ name: "login" });
+    },
   },
 };
 </script>
@@ -98,6 +108,8 @@ nav {
   bottom: 20px;
 }
 .sidenav {
+  display: flex;
+  flex-direction: column;
   width: 200px;
   position: fixed;
   z-index: 1;
@@ -108,16 +120,25 @@ nav {
   padding: 0px 0;
 }
 .sidenav a {
-  padding: 6px 8px 8px 16px;
+  /* padding: 6px 8px 8px 16px; */
   text-decoration: none;
   color: #3d3d3d;
   display: block;
-  text-align: start;
+
   padding-left: 25px;
 }
 .sidenav a:hover {
   color: rgb(0, 53, 186);
 }
+#log-out {
+  margin-top: auto;
+  text-align: center;
+  background: rgb(71, 87, 103);
+  width: 200px;
+  color: white;
+  padding-right: 30px;
+}
+
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;

@@ -10,8 +10,14 @@ export default {
       password: infoLogin.password,
     };
     console.log(body);
-    let res = await axios.post(url, body);
-    console.log(res);
+    let res = undefined;
+    try {
+      res = await axios.post(url, body);
+      console.log(res);
+    } catch (error) {
+      console.log("error");
+      return false;
+    }
 
     if (res.data.status == true) {
       console.log("success");
@@ -31,6 +37,8 @@ export default {
         Authorization: `Bearer ${token}`,
       },
     };
-    // return "hello";
+  },
+  logout() {
+    localStorage.removeItem("apartment-auth");
   },
 };

@@ -58,7 +58,13 @@ export default {
   methods: {
     async login() {
       console.log(this.infoLogin);
-      await AuthService.loginAuth(this.infoLogin);
+      let res = await AuthService.loginAuth(this.infoLogin);
+      if (res == false) {
+        alert("เกิดข้อผิดพลาด!");
+        this.clearForm();
+      } else {
+        this.$router.push({ name: "home" });
+      }
     },
     showPassword() {
       let x = document.getElementById("myInput");
@@ -67,6 +73,12 @@ export default {
       } else {
         x.type = "password";
       }
+    },
+    clearForm() {
+      this.infoLogin = {
+        username: "",
+        password: "",
+      };
     },
   },
 };
@@ -111,7 +123,7 @@ hr {
 }
 .form-control {
   margin: 20px 0 40px;
-  width: 500px;
+  width: 100%;
   margin-right: auto;
   margin-left: auto;
   background: whitesmoke;
